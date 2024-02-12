@@ -14,8 +14,8 @@ The Spring Authorization Server project introduces a new technology for managing
 -Token Settings: Administrators can edit token settings, including time-to-live for access and refresh tokens.
 
 ## Getting Started
-1.Clone the repository to your local machine.
-2.Configure the necessary properties in the application.properties files(I left comments in the files to help you).
+1. Clone the repository to your local machine.
+2. Configure the necessary properties in the application.properties files(I left comments in the files to help you).
 3.Ensure you have Liquibase installed and configured. In the "changelog-0.0.1.xml", replace "bogdan.mierloiu01@gmail" with your personal email and password encrypted with BcryptPasswordEncoder. This will automatically insert your credentials with an admin role.
 4.Build and run the application using Maven.
 5.Access the web interface to manage client applications.
