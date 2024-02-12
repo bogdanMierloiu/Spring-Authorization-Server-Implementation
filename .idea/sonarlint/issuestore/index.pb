@@ -196,3 +196,5 @@ T
 $kubernetes/managed-cert-ingress.yaml,5\f\5f0e2013409038f8265a03b93190845fc86bdfb0
 D
 kubernetes/README.md,5\d\5d61d21d5ddb6e8c4e21e68d17b1ddbfc20488aa
+P
+ .github/workflows/build-test.yml,9\6\962a68bba6527e758faa32a76c8331900a9078b0
