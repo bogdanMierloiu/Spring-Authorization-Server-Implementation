@@ -17,7 +17,7 @@
         </insert>
     </changeSet>
 
-    <!-- Insert bogdan.mierloiu01gmail.com user-->
+    <!-- Insert user-->
     <changeSet id="202329081146" author="bogdan">
         <preConditions onFail="MARK_RAN">
             <tableExists tableName="server_user"/>
