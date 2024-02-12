@@ -1,0 +1,66 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          crossorigin="anonymous">
+    <link th:href="@{/style/style.css}" th:rel="stylesheet">
+    <link rel="icon" th:href="@{/img/icon.svg}"  type="image/x-icon">
+</head>
+<body>
+
+<div class="container">
+    <div class="left-side">
+        <img class="logo dark-logo" alt="" th:src="@{/img/authentication-logo.png}">
+        <div class="form-container form-links">
+            <div class="sign-up-container">
+                <div class="user-info">
+                    <i class="fas fa-user fa-3x"></i>
+                    <span th:utext="${user.name + ' ' + user.surname}" class="sign-up-link"></span>
+                    <span th:utext="${user.email}" class="sign-up-link"></span>
+                    <form th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+                        <span class="sign-up-link">ADMIN</span>
+                    </form>
+                    <form th:unless="${#authorization.expression('hasRole(''ADMIN'')')}">
+                        <span class="sign-up-link">MEMBER</span>
+                    </form>
+                </div>
+                <div th:unless="${#authorization.expression('hasRole(''ADMIN'')')}" class="a-margin-bottom">
+                    <a th:href="@{/user/request-admin/{userId}(userId=${user.id})}" th:method="get"
+                       class="sign-up-link">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Request admin role</span>
+                    </a>
+                </div>
+                <div class="a-margin-bottom">
+                    <a th:href="@{/change/password}" class="sign-up-link">
+                        <i class="fas fa-key"></i>
+                        <span>Change Password</span>
+                    </a>
+                </div>
+                <div class="a-margin-up-bottom">
+                    <a th:href="@{/}" class="sign-up-link">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Back to Dashboard</span>
+                    </a>
+                </div>
+                <div class="a-margin-bottom">
+                    <a th:href="@{/login}" class="sign-up-link">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Back to Login</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="right-side">
+        <img class="right-img" th:src="@{/img/spring-authorization-server.png}" alt="Girl Image">
+    </div>
+</div>
+
+</body>
+</html>
+
+

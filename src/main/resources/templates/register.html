@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          crossorigin="anonymous">
+    <link th:href="@{/style/style.css}" th:rel="stylesheet">
+    <link rel="icon" th:href="@{/img/icon.svg}"  type="image/x-icon">
+</head>
+
+<body>
+
+<div class="container">
+    <div class="left-side">
+        <img class="logo dark-logo" alt="" th:src="@{/img/authentication-logo.png}">
+        <form th:action="@{/signup/user}"
+              th:object="${serverUserRequest}"
+              method="post"
+              class="form-container">
+            <input type="email" id="email" th:field="*{email}" class="input" placeholder="E-mail"
+                   required/>
+            <div class="password-container">
+                <input type="password" th:field="*{password}" id="registerPasswordInput" class="input password"
+                       placeholder="Password"
+                       required/>
+                <div id="eyeIcons">
+                    <i class="far fa-eye" id="regEyeIcon"
+                       th:onclick="'togglePasswordVisibility(\'registerPasswordInput\', \'regEyeIcon\', \'regEyeSlashIcon\')'"
+                       aria-hidden="true"></i>
+                    <i class="far fa-eye-slash" id="regEyeSlashIcon"
+                       th:onclick="'togglePasswordVisibility(\'registerPasswordInput\', \'regEyeIcon\', \'regEyeSlashIcon\')'"
+                       aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="password-container">
+                <input type="password" th:field="*{passwordConfirmed}" id="regPasswordConfirmInput"
+                       class="input password"
+                       placeholder="Confirm password"
+                       required/>
+                <div id="eyeIconsToConfirm">
+                    <i class="far fa-eye" id="eyeIconConfirm"
+                       th:onclick="'togglePasswordVisibility(\'regPasswordConfirmInput\', \'eyeIconConfirm\', \'eyeSlashIconConfirm\')'"
+                       aria-hidden="true"></i>
+                    <i class="far fa-eye-slash" id="eyeSlashIconConfirm"
+                       th:onclick="'togglePasswordVisibility(\'regPasswordConfirmInput\', \'eyeIconConfirm\', \'eyeSlashIconConfirm\')'"
+                       aria-hidden="true"></i>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <p class="info-txt">
+                        Password must be between 16 and 32 characters and should not include white spaces.
+                    </p>
+                </div>
+            </div>
+            <input type="text" th:field="*{name}" class="input" placeholder="Name" required/>
+            <input type="text" th:field="*{surname}" class="input" placeholder="Surname" required/>
+            <a class="btn-href">
+                <button type="submit" class="login-btn">Create</button>
+            </a>
+            <div>
+                <p class="text-warning" id="errorMessage" th:if="${errorMessage}"
+                   th:utext="${errorMessage}"></p>
+            </div>
+            <div class="a-margin-up-bottom">
+                <a th:href="@{/login}" class="sign-up-link">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Login</span>
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <div class="right-side">
+        <img class="right-img" th:src="@{/img/spring-authorization-server.png}" alt="Girl Image">
+    </div>
+
+</div>
+
+<script th:src="@{/js/script.js}" type="text/javascript"></script>
+</body>
+</html>

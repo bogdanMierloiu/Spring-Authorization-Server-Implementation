@@ -1,0 +1,116 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+    <!-- Create table user_code-->
+    <changeSet id="20230915141441" author="bogdan">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="user_code"/>
+            </not>
+        </preConditions>
+        <createTable tableName="user_code">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_email" type="varchar(64)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="code" type="varchar(16)">
+                <constraints nullable="true" unique="true"/>
+            </column>
+            <column name="generated_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_used" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Create table user_token-->
+    <changeSet id="2023092584702" author="bogdan">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="user_token"/>
+            </not>
+        </preConditions>
+        <createTable tableName="user_token">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_email" type="varchar(64)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="token" type="varchar(2000)">
+                <constraints nullable="true" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Create table user_ip-->
+    <changeSet id="20231002082110" author="bogdan">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="user_ip"/>
+            </not>
+        </preConditions>
+        <createTable tableName="user_ip">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="ip_address" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="login_attempts" type="int">
+                <constraints nullable="true"/>
+            </column>
+            <column name="blocked_at" type="datetime">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Add column last_action to user_ip table-->
+    <changeSet id="20231002122110" author="bogdan">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists columnName="last_action"
+                              tableName="user_ip"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="user_ip">
+            <column name="last_action"
+                    type="datetime"/>
+        </addColumn>
+    </changeSet>
+
+    <!-- Add column was_blocked to user_ip table-->
+    <changeSet id="20231004112500" author="bogdan">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists columnName="was_blocked"
+                              tableName="user_ip"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="user_ip">
+            <column name="was_blocked"
+                    type="boolean"/>
+        </addColumn>
+    </changeSet>
+
+    <!-- Modify column ip_address from user_ip table-->
+    <changeSet id="20231006163600" author="bogdan">
+        <preConditions onFail="MARK_RAN">
+                <columnExists columnName="ip_address"
+                              tableName="user_ip"/>
+        </preConditions>
+        <modifyDataType
+                         columnName="ip_address"
+                         newDataType="varchar(64)"
+                         tableName="user_ip"/>
+    </changeSet>
+
+</databaseChangeLog>
