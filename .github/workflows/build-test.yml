@@ -1,22 +1,25 @@
 name: Build and Test
 
-on: [push]  # Start pipeline on push
+on:
+  push:
+    paths-ignore:
+      - 'README.md'
+    branches:
+      - main
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest  # Use Ubuntu as the runner OS
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v2
+      - name: Set up Java version
+        uses: actions/setup-java@v1
         with:
-          java-version: 17
+            java-version: '17'
 
       - name: Build with Maven
-        run: mvn -B clean package --file pom.xml
+        run: mvn clean install -DskipTests
 
       - name: Run tests
         run: mvn test
+
