@@ -1,0 +1,10 @@
+# managed-cert.yaml
+
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: auth-server-managed-cert
+spec:
+  domains:
+    - your-domain-name.com
+

@@ -1,0 +1,27 @@
+# managed-cert-ingress.yaml
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: auth-server-ingress
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    networking.gke.io/managed-certificates: "auth-server-managed-cert"
+    kubernetes.io/ingress.global-static-ip-name: "your-static-ip-name"
+spec:
+  rules:
+    - host: your-domain-name.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: auth-server-service-np # Name of the Service associated with the Deployment
+                port:
+                  number: 8080  # Service port
+  defaultBackend:
+    service:
+      name: auth-server-service-np
+      port:
+        number: 8080

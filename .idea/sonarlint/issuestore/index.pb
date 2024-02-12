@@ -184,3 +184,15 @@ q
 Asrc/main/java/ro/bogdan_mierloiu/authserver/dto/UsersMessage.java,e\e\ee3273afe1504fc187c1e59f4e95bc9960680e2b
 x
 Hsrc/main/java/ro/bogdan_mierloiu/authserver/dto/UpdateClientRequest.java,6\3\631434de11c8e5c6e474536d7d5beb4ffb4a94b8
+J
+kubernetes/deployment.yaml,0\d\0dc35d2f42aeeb53d196abccc5a7909fe4f0aa22
+R
+"kubernetes/auth-server-secret.yaml,5\a\5a1fe80eb0ed5a21d22508e37cc2411ed18106f2
+G
+kubernetes/service.yaml,0\0\0045c79bf47a205d33ee638ced9231bc0247a6a8
+L
+kubernetes/managed-cert.yaml,a\9\a912be23356033d2ed7829cc078dcfce4d8d4721
+T
+$kubernetes/managed-cert-ingress.yaml,5\f\5f0e2013409038f8265a03b93190845fc86bdfb0
+D
+kubernetes/README.md,5\d\5d61d21d5ddb6e8c4e21e68d17b1ddbfc20488aa

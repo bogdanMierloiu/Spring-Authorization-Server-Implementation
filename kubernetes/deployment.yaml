@@ -1,0 +1,24 @@
+# deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-server-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-server
+  template:
+    metadata:
+      labels:
+        app: auth-server
+    spec:
+      containers:
+        - name: auth-server-container
+          image: your-image-name
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - secretRef:
+                name: your-secret-name
