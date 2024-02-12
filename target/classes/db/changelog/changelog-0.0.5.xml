@@ -40,8 +40,8 @@
                                  onDelete="CASCADE"/>
     </changeSet>
 
-    <!-- create_request_admin_table-->
-    <changeSet id="20230207095559" author="bogdan">
+    <!--    Create table clients_internal-->
+    <changeSet id="20230207095558" author="bogdan">
         <preConditions onFail="MARK_RAN">
             <not>
                 <tableExists tableName="clients_internal"/>
@@ -59,6 +59,7 @@
             </column>
         </createTable>
     </changeSet>
+
 
     <changeSet id="20230207111259" author="bogdan">
         <preConditions>

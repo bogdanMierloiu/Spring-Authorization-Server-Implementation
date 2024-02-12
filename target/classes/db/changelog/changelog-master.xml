@@ -2,7 +2,7 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
 
 <!--    Create table server_user-->
     <changeSet id="202308281431" author="bogdan">
@@ -86,6 +86,6 @@
     <include file="db/changelog/changelog-0.0.2.xml"/>
     <include file="db/changelog/changelog-0.0.3.xml"/>
     <include file="db/changelog/changelog-0.0.4.xml"/>
-<!--    <include file="db/changelog/changelog-0.0.5.xml"/>-->
+    <include file="db/changelog/changelog-0.0.5.xml"/>
 
 </databaseChangeLog>
