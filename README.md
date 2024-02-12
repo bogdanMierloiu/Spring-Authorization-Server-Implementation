@@ -1,6 +1,6 @@
 # Spring-Authorization-Server-Implementation
 
-Overview
+- Overview
 The Spring Authorization Server project introduces a new technology for managing user authentication and authorization within applications. This server provides a user-friendly web interface where users can create accounts using their name, surname and email address. Upon registration, users receive an activation code via email to verify their accounts. Once logged in, users can manage their accounts, change passwords, and perform other account-related actions.
 
 As an administrator, you have access to the admin console, where you can manage client applications. This includes adding client applications with client ID, client secret, scope, and redirect URI. Client applications can then interact with the authorization server using the OAuth 2.0 flow.
