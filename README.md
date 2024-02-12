@@ -6,12 +6,12 @@ The Spring Authorization Server project introduces a new technology for managing
 ## FEATURES
 * User Registration: Users can create accounts with their personal information.
 * Email Verification: Upon registration, users receive an activation code via email to verify their accounts.
--Reset Password: Users can reset their passwords using the "Forgot Password" feature.
--Help form: Users can send a message to the administrator.
--User Console: Logged-in users can manage their accounts for changing passwords or for request admin role.
--Admin Console: Administrators can manage client applications, including adding and editing their details.
--OAuth 2.0 Flow: Client applications can interact with the authorization server using the OAuth 2.0 protocol.
--Token Settings: Administrators can edit token settings, including time-to-live for access and refresh tokens.
+* Reset Password: Users can reset their passwords using the "Forgot Password" feature.
+* Help form: Users can send a message to the administrator.
+* User Console: Logged-in users can manage their accounts for changing passwords or for request admin role.
+* Admin Console: Administrators can manage client applications, including adding and editing their details.
+* OAuth 2.0 Flow: Client applications can interact with the authorization server using the OAuth 2.0 protocol.
+* Token Settings: Administrators can edit token settings, including time-to-live for access and refresh tokens.
 
 ## Getting Started
 1. Clone the repository to your local machine.
