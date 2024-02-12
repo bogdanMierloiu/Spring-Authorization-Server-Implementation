@@ -3,6 +3,7 @@
 
 # Log files
 *.log
+auth-server.iml
 
 # IntelliJ IDEA
 .idea/
