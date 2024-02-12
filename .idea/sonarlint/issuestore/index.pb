@@ -198,3 +198,6 @@ D
 kubernetes/README.md,5\d\5d61d21d5ddb6e8c4e21e68d17b1ddbfc20488aa
 P
  .github/workflows/build-test.yml,9\6\962a68bba6527e758faa32a76c8331900a9078b0
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
