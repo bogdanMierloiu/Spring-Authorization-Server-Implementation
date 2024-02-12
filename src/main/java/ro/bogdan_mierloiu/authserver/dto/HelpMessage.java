@@ -14,4 +14,5 @@ public class HelpMessage {
 
     @NotBlank
     private String description;
+
 }
