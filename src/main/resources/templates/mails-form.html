@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Inform users</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          crossorigin="anonymous">
+    <link th:href="@{/style/style.css}" th:rel="stylesheet">
+    <link rel="icon" th:href="@{/img/icon.svg}" type="image/x-icon">
+</head>
+<body>
+
+<div class="container">
+    <div class="left-side">
+        <img class="logo dark-logo" alt="" th:src="@{/img/authentication-logo.png}">
+        <form th:action="@{/admin/send-emails}" th:object="${usersMessage}" method="post" class="form-container">
+            <input type="text" id="subject" th:field="*{subject}" class="input"
+                   placeholder="Subject ... 4-48 characters" required
+                   autofocus/>
+            <textarea th:field="*{text}" class="input" placeholder="Text ... 4-480 characters"
+                      required
+                      autofocus></textarea>
+            <button type="submit" class="login-btn" id="submitButton">Send</button>
+            <div class="a-margin-up-bottom">
+                <a th:href="@{/login}" class="sign-up-link">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Login</span>
+                </a>
+            </div>
+        </form>
+        <div>
+        <span class="error-message" id="errorMessage" th:if="${errorMessage}" th:utext="${errorMessage}">
+        </span>
+        </div>
+    </div>
+    <div class="right-side">
+        <img class="right-img" th:src="@{/img/spring-authorization-server.png}" alt="Girl Image">
+    </div>
+</div>
+<script th:src="@{/js/script.js}" type="text/javascript"></script>
+</body>
+</html>

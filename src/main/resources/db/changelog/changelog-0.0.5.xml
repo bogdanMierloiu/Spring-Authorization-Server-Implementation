@@ -1,0 +1,78 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+
+    <!-- create_request_admin_table-->
+    <changeSet id="20231220134858" author="bogdan">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="request_admin"/>
+            </not>
+        </preConditions>
+        <createTable tableName="request_admin">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="requested_at" type="timestamp"/>
+            <column name="status" type="varchar(50)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20231220140058" author="bogdan">
+        <preConditions>
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_user_id"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseTableName="request_admin"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_user_id"
+                                 referencedTableName="server_user"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+
+    <!--    Create table clients_internal-->
+    <changeSet id="20230207095558" author="bogdan">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="clients_internal"/>
+            </not>
+        </preConditions>
+        <createTable tableName="clients_internal">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="client_id" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="client_secret" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="20230207111259" author="bogdan">
+        <preConditions>
+            <tableExists tableName="clients_internal"/>
+        </preConditions>
+        <modifyDataType tableName="clients_internal" columnName="client_secret" newDataType="VARCHAR(256)"/>
+    </changeSet>
+
+    <changeSet id="20230207114057" author="bogdan">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="user_token" columnName="session_id"/>
+        </preConditions>
+        <dropColumn tableName="user_token" columnName="session_id"/>
+    </changeSet>
+
+</databaseChangeLog>

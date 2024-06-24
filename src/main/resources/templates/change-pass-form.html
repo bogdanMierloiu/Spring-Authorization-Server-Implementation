@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" LANG="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Change Password</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          crossorigin="anonymous">
+    <link th:href="@{/style/style.css}" th:rel="stylesheet">
+    <link rel="icon" th:href="@{/img/icon.svg}"  type="image/x-icon">
+</head>
+<body>
+
+<div class="container">
+    <div class="left-side">
+        <img class="logo dark-logo" alt="" th:src="@{/img/authentication-logo.png}">
+        <form th:action="@{/change/process}" method="post" class="form-container">
+            <input type="email" id="email" name="email" class="input" th:value="${email}" placeholder="E-mail" required
+                       autofocus/>
+            <div class="password-container">
+                <input type="password" name="oldPassword" id="oldPasswordInput" class="input password"
+                       placeholder="Your old password" required/>
+                <div id="eyeIconsToOld">
+                    <i class="far fa-eye" id="eyeIconsToOldPassword" th:onclick="'togglePasswordVisibility(\'oldPasswordInput\', \'eyeIconsToOldPassword\', \'eyeSlashIconOldPassword\')'"
+                       aria-hidden="true"></i>
+                    <i class="far fa-eye-slash" id="eyeSlashIconOldPassword" th:onclick="'togglePasswordVisibility(\'oldPasswordInput\', \'eyeIconsToOldPassword\', \'eyeSlashIconOldPassword\')'"
+                       aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="password-container">
+                <input type="password" name="newPassword" id="newPasswordInput" class="input password" placeholder="New password"
+                       required/>
+                <div id="eyeIcons">
+                    <i class="far fa-eye" id="newEyeIcon" th:onclick="'togglePasswordVisibility(\'newPasswordInput\', \'newEyeIcon\', \'newEyeSlashIcon\')'" aria-hidden="true"></i>
+                    <i class="far fa-eye-slash" id="newEyeSlashIcon" th:onclick="'togglePasswordVisibility(\'newPasswordInput\', \'newEyeIcon\', \'newEyeSlashIcon\')'"
+                       aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="password-container">
+                <input type="password" name="newPasswordConfirmed" id="passwordConfirmInput" class="input password"
+                       placeholder="Confirm password"
+                       required/>
+                <div id="eyeIconsToConfirm">
+                    <i class="far fa-eye" id="eyeIconConfirm" th:onclick="'togglePasswordVisibility(\'passwordConfirmInput\', \'eyeIconConfirm\', \'eyeSlashIconConfirm\')'"
+                       aria-hidden="true"></i>
+                    <i class="far fa-eye-slash" id="eyeSlashIconConfirm" th:onclick="'togglePasswordVisibility(\'passwordConfirmInput\', \'eyeIconConfirm\', \'eyeSlashIconConfirm\')'"
+                       aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="details-container">
+                <div>
+                    <p class="info-txt">
+                        Password must be between 16 and 32 characters and should not include white spaces.
+                    </p>
+                </div>
+            </div>
+            <a class="btn-href">
+                <button type="submit" class="login-btn">Change</button>
+            </a>
+            <div>
+                <p class="text-warning" id="errorMessage" th:if="${errorMessage}"
+                   th:utext="${errorMessage}"></p>
+            </div>
+            <div class="a-margin-up-bottom">
+                <a th:href="@{/login}" class="sign-up-link">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Login</span>
+                </a>
+            </div>
+    </form>
+
+</div>
+
+    <div class="right-side">
+        <img class="right-img" th:src="@{/img/spring-authorization-server.png}" alt="Girl Image">
+    </div>
+</div>
+
+
+<script th:src="@{/js/script.js}" type="text/javascript"></script>
+</body>
+</html>

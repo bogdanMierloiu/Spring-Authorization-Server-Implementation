@@ -1,0 +1,51 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+    <!--    Insert two roles (ADMIN and USER)-->
+    <changeSet id="20230828163201" author="bogdan">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="role"/>
+        </preConditions>
+        <insert tableName="role">
+            <column name="name" value="ADMIN"/>
+        </insert>
+        <insert tableName="role">
+            <column name="name" value="USER"/>
+        </insert>
+    </changeSet>
+
+    <!-- Insert user-->
+    <changeSet id="202329081146" author="bogdan">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="server_user"/>
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM server_user WHERE email = 'bogdan.mierloiu01@gmail.com'
+            </sqlCheck>
+        </preConditions>
+        <insert tableName="server_user">
+            <column name="email" value="bogdan.mierloiu01@gmail.com"/>
+            <column name="name" value="Name"/>
+            <column name="surname" value="Surname"/>
+            <column name="password" value="$2a$12$Dgndorqi9aXNjvcJL8.8ku2TRYPJRVo1WGqEVbU/Bun06QhpcNunK"/>
+            <column name="account_non_expired" value="true"/>
+            <column name="account_non_locked" value="true"/>
+            <column name="credentials_non_expired" value="true"/>
+            <column name="enabled" value="true"/>
+        </insert>
+    </changeSet>
+
+    <!-- Add ADMIN ROLE to bogdan.mierloiu01@gmail.com user -->
+    <changeSet id="202329081151" author="bogdan">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="user_role"/>
+        </preConditions>
+        <insert tableName="user_role">
+            <column name="user_id" value="1"/>
+            <column name="role_id" value="1"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

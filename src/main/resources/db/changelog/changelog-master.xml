@@ -1,0 +1,91 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+<!--    Create table server_user-->
+    <changeSet id="202308281431" author="bogdan">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="server_user"/>
+            </not>
+        </preConditions>
+        <createTable tableName="server_user">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="email" type="varchar(64)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="surname" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="password" type="varchar(256)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="account_non_expired" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="account_non_locked" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="credentials_non_expired" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="enabled" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+    <!--    Create table role-->
+    <changeSet id="202328081441" author="bogdan">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="role"/>
+            </not>
+        </preConditions>
+        <createTable tableName="role">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(64)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!--    Create table user_role-->
+    <changeSet id="202328081443" author="bogdan">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="user_role"/>
+            </not>
+        </preConditions>
+        <createTable tableName="user_role">
+            <column name="user_id" type="bigint" autoIncrement="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="bigint" autoIncrement="true">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <include file="db/changelog/changelog-0.0.1.xml"/>
+    <include file="db/changelog/changelog-0.0.2.xml"/>
+    <include file="db/changelog/changelog-0.0.3.xml"/>
+    <include file="db/changelog/changelog-0.0.4.xml"/>
+    <include file="db/changelog/changelog-0.0.5.xml"/>
+
+</databaseChangeLog>

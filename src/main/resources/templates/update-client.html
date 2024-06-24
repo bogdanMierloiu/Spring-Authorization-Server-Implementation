@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Register client</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          crossorigin="anonymous">
+    <link th:href="@{/style/style.css}" th:rel="stylesheet">
+    <link rel="icon" th:href="@{/img/icon.svg}"  type="image/x-icon">
+</head>
+<body onload="parseAccessTokenTimeDuration(); parseRefreshTokenTimeDuration()">
+
+<div class="container">
+    <div class="left-side">
+        <img class="logo dark-logo" alt="" th:src="@{/img/authentication-logo.png}">
+        <form th:object="${updateClientRequest}"
+              th:action="@{/admin/update-client/{clientId}(clientId=${clientToUpdate.clientId})}"
+              th:method="post"
+              class="form-container"
+              id="updateClientForm">
+            <div th:object="${clientToUpdate}" class="form-container">
+                <label class="white-text">Client name:</label>
+                <input type="text" id="clientName" th:field="*{clientName}"
+                       th:value="${clientToUpdate.getClientName()}"
+                       class="input" required autofocus/>
+                <label class="white-text">Access token time to live (minutes):</label>
+                <input type="text" id="accessTokenTimeToLive"
+                       th:field="*{tokenSettings.accessTokenTimeToLive}"
+                       th:value="${clientToUpdate.getTokenSettings().getAccessTokenTimeToLive()}"
+                       class="input"/>
+                <label class="white-text">Refresh token time to live (minutes):</label>
+                <input type="text" id="refreshTokenTimeToLive" th:field="*{tokenSettings.refreshTokenTimeToLive}"
+                       th:value="${clientToUpdate.getTokenSettings().getRefreshTokenTimeToLive()}"
+                       class="input"/>
+                <button type="submit" class="login-btn btn-create"
+                        th:data-confirm-update=
+                                "|Are you sure you want to update client ?|"
+                        onclick="if (!confirm(this.getAttribute('data-confirm-update'))) return false">Update
+                </button>
+                <div>
+                    <p class="text-warning" id="errorMessage" th:if="${errorMessage}"
+                       th:utext="${errorMessage}"></p>
+                </div>
+                <div class="sign-up-container">
+                    <div class="a-margin-up-bottom">
+                        <a th:href="@{/admin}" class="sign-up-link">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Back to Admin Console</span>
+                        </a>
+                    </div>
+                    <div class="a-margin-bottom">
+                        <a th:href="@{/}" class="sign-up-link">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Back to Dashboard</span>
+                        </a>
+                    </div>
+                    <div class="a-margin-bottom">
+                        <a th:href="@{/login}" class="sign-up-link">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Back to Login</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="right-side">
+        <img class="right-img" th:src="@{/img/spring-authorization-server.png}" alt="Girl Image">
+    </div>
+</div>
+
+
+<script th:src="@{/js/script.js}" type="text/javascript"></script>
+<script th:src="@{/js/parse-duration.js}" type="text/javascript"></script>
+</body>
+</html>

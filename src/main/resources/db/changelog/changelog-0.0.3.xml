@@ -1,0 +1,30 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+
+
+    <!-- Add columns firstBlockEndTime and secondBlockEndTime to user_ip table-->
+    <changeSet id="2023120504659" author="bogdan">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists columnName="first_block_end_time"
+                              tableName="user_ip"/>
+            </not>
+            <not>
+                <columnExists columnName="second_block_end_time"
+                              tableName="user_ip"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="user_ip">
+            <column name="first_block_end_time"
+                    type="datetime"/>
+        </addColumn>
+        <addColumn tableName="user_ip">
+            <column name="second_block_end_time"
+                    type="datetime"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

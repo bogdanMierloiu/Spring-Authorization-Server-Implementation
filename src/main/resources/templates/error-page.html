@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Authorization Server</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          crossorigin="anonymous">
+    <link th:href="@{/style/style.css}" th:rel="stylesheet">
+    <link rel="icon" th:href="@{/img/icon.svg}"  type="image/x-icon">
+</head>
+<body>
+<div class="container">
+    <div class="left-side">
+        <img class="logo dark-logo" alt="" th:src="@{/img/authentication-logo.png}">
+        <div class="form-container form-links">
+            <div class="sign-up-container">
+                <div class="info-txt">
+                    <p class="sign-up-link" style="font-size:16px;" th:utext="${errorMessage}"></p>
+                </div>
+                <div class="a-margin-up-bottom">
+                    <a th:href="@{/}" class="sign-up-link">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Back to Dashboard</span>
+                    </a>
+                </div>
+                <div class="a-margin-bottom">
+                    <a th:href="@{/login}" class="sign-up-link">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Back to Login</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="right-side">
+        <img class="right-img" th:src="@{/img/spring-authorization-server.png}" alt="Girl Image">
+    </div>
+</div>
+</body>
+</html>
